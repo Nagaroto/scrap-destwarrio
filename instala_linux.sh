@@ -30,5 +30,6 @@ echo "Aplicando migrations..."
 python3 manage.py migrate
 
 echo "Iniciando servidor..."
-xdg-open http://127.0.0.1:8000 2>/dev/null
-python3 manage.py runserver
+sleep 2
+xdg-open http://127.0.0.1:8001/inicio/login/ 2>/dev/null &
+python3 manage.py runserver 0.0.0.0:8001

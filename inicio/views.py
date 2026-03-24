@@ -216,12 +216,27 @@ def logi(request):
             username = request.POST.get('username')
             password = request.POST.get('password')
 
+        # Validações básicas
+        if not username or not password:
+            return JsonResponse({'erro': 'Username e password são obrigatórios'}, status=400)
+
         user = authenticate(request, username=username, password=password)
 
         if user is None:
-            user = User.objects.create_user(username=username, password=password)
-            user.save()
-            user = authenticate(request, username=username, password=password)
+            # Verificar se o usuário já existe
+            if User.objects.filter(username=username).exists():
+                return JsonResponse({'erro': 'Username já existe'}, status=400)
+            
+            # Criar novo usuário apenas se não existir
+            try:
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                user = authenticate(request, username=username, password=password)
+            except Exception as e:
+                return JsonResponse({'erro': f'Erro ao criar usuário: {str(e)}'}, status=400)
+
+        if user is None:
+            return JsonResponse({'erro': 'Credenciais inválidas'}, status=401)
 
         login(request, user)
 
