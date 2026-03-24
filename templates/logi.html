@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'inicio/css/log.css' %}?v=3">
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="wrapper">
+  <form class="form" method="POST">{% csrf_token %}
+    {% csrf_token %}
+
+    <p id="heading">login</p>
+
+    {% if erro %}
+      <div style="color:#ff4d4d; text-align:center; margin-bottom:10px;">
+        {{ erro }}
+      </div>
+    {% endif %}
+
+    <div class="field">
+      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708z"/>
+      </svg>
+      <input
+        type="text"
+        name="username"
+        class="input-field"
+        placeholder="Username"
+        required
+      >
+    </div>
+
+    <div class="field">
+      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2z"/>
+      </svg>
+      <input
+        type="password"
+        name="password"
+        class="input-field"
+        placeholder="Password"
+        required
+      >
+    </div>
+
+    <div class="btn">
+      <button class="button1" type="submit">Login</button>
+      <button class="button2" type="button" id="signupBtn">Sign Up</button>
+    </div>
+
+    <button class="button3" type="button">Forgot Password</button>
+  </form>
+</div>
+
+<div id="page-transition"></div>
+
+<script src="{% static 'inicio/js/logs.js' %}"></script>
+
+<div class="brand">destwarrio</div>
+
+</body>
+</html>

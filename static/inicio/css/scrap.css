@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@500&display=swap');
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0b0f2b 35%,
+    #8b0000 60%,
+    #000000 100%
+  );
+  background-size: 400% 400%;
+  animation: bgMove 18s ease infinite;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* TOPO */
+.top-bar {
+  height: 70px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,0,0,0.25);
+}
+
+/* NOME */
+.brand-top {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #ff0000;
+  animation: glow 4s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 6px #5c0000; }
+  to { text-shadow: 0 0 16px #ff0000; }
+}
+
+/* HAMBURGER */
+.hamburger {
+  width: 30px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  margin: 6px 0;
+  background: #fff;
+  border-radius: 3px;
+}
+
+/* MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: linear-gradient(#000, #0b0f2b, #8b0000);
+  padding: 100px 30px;
+  transition: 0.4s;
+  z-index: 20;
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+.side-menu a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.side-menu a:hover {
+  color: #ff0000;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* CONTEÚDO */
+.content {
+  padding: 60px 30px;
+}
+
+/* BUSCA */
+.search-box {
+  max-width: 600px;
+  margin: 0 auto 60px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 14px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-box button {
+  padding: 14px 22px;
+  background: #8b0000;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* RESULTADOS */
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* CARD */
+.product-card {
+  position: relative;
+  background: rgba(0,0,0,0.65);
+  border: 1px solid rgba(255,0,0,0.25);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #ff4444;
+  margin-bottom: 12px;
+}
+
+/* BOTÃO CARRINHO */
+.cart-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: #8b0000;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background: #ff0000;
+  transform: scale(1.1);
+}
+
+/* FOOTER */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px;
+  text-align: center;
+  background: #2e2e2e;
+  color: #ccc;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 0.4s ease;
+}
+
+.footer-bar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* LOADING */
+.loading {
+  display: none;
+  text-align: center;
+  margin: 40px auto;
+  font-size: 16px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.loading span {
+  animation: blink 1.4s infinite both;
+}
+
+.loading span:nth-child(1) { animation-delay: 0s; }
+.loading span:nth-child(2) { animation-delay: .2s; }
+.loading span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes blink {
+  0% { opacity: .2; }
+  20% { opacity: 1; }
+  100% { opacity: .2; }
+}

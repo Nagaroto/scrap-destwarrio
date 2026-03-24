@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'inicio/css/on.css' %}">
+</head>
+
+<body>
+
+  <!-- TOPO -->
+  <header class="top-bar">
+    <div class="brand-top">DESTWARRIO</div>
+  </header>
+
+  <!-- BOTÃO HAMBURGUER (CANTO INFERIOR DIREITO) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- MENU LATERAL DIREITO -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="{% url 'estilo' %}">scrap_destwarrio</a>
+
+  </nav>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- CONTEÚDO -->
+  <main class="content"></main>
+
+  <!-- JS -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+  </script>
+<main class="content">
+
+  <!-- BLOCO 1 -->
+  <section class="intro">
+    <p>
+    Olá, seja bem-vindo ao meu projeto de demonstração.
+
+        Este projeto foi desenvolvido para evidenciar minha capacidade de coleatar, processar e organizar dados da internet de forma rápida e eficiente,
+        permitindo a criação de soluções personalizadas e estratégicas, totalmente adaptadas às necessidades de cada cliente.
+    </p>
+  </section>
+
+  <!-- CARD GITHUB -->
+  <section class="git-card">
+    <img
+      src="https://avatars.githubusercontent.com/u/9919?s=200&v=4"
+      alt="GitHub Logo"
+    />
+
+    <div class="git-info">
+      <h2>GitHub</h2>
+      <a href=" https://github.com/Nagaroto" target="_blank">
+        https://github.com/Nagaroto
+      </a>
+    </div>
+  </section>
+
+  <!-- TEXTO MENU -->
+  <section class="menu-info">
+    <p>
+      Para verificar minha ferramenta <strong>scrap_destwarrio</strong>,
+      basta acessar o menu.
+    </p>
+  </section>
+
+  <!-- BLOCO 2 -->
+  <section class="focus">
+    <p>
+      Tenho foco constante em aprender novas tecnologias para facilitar
+      o dia a dia dos meus clientes, ajudando-os a economizar tempo e obter
+      soluções mais eficientes.
+    </p>
+  </section>
+    <!-- tu apaga dps se der errado -->
+
+
+</main>
+
+<!-- FAIXA FINAL -->
+<footer class="footer-bar">
+  <p>© destwarrio — original</p>
+</footer>
+
+<script src="{% static 'inicio/js/pr.js' %}" defer></script>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<script src="{% static 'inicio/js/pr.js' %}"></script>
+
+</body>
+</html>
