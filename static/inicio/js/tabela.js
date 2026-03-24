@@ -110,8 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         "X-CSRFToken":csrfToken
                     },
                     body:JSON.stringify({
-                        produto_id:id,
-                        quantidade:1
+                        produto_id: Number(id),
+                        quantidade: Number(1)
                     })
                 })
 
@@ -129,6 +129,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     el.innerText = atual - 1
                 }
+                
+                // RECARREGA A PÁGINA APÓS DIMINUIR
+                setTimeout(() => {
+                    location.reload()
+                }, 500)
+                return
             }
 
             //  RECARREGA TUDO - para garantir que o estado real esteja sempre atualizado
@@ -161,8 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "X-CSRFToken":csrfToken
                 },
                 body:JSON.stringify({
-                    produto_id:id,
-                    quantidade: atual
+                    produto_id: Number(id),
+                    quantidade: Number(atual)
                 })
             })
 
