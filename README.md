@@ -196,15 +196,6 @@ Pode ser utilizado tanto como ferramenta quanto como ponto de partida para proje
 ---
 
 ## Autor
+destwarrio
 
-Hercolys da Silva Lima
 
----
-
-Se quiser depois, eu te deixo esse README ainda mais pesado com:
-
-* imagens do sistema
-* demonstração
-* badges de build e status
-
-aí vira nível projeto open source grande mesmo.
