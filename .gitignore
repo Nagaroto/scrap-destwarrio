@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenv
+.venv/
+env/
+venv/
+
+# Django
+db.sqlite3
+*.log
+staticfiles/
+
+# Build / distribuição
+build/
+dist/
+*.spec
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# PyInstaller
+*.manifest
+*.exe
+
+# Test / cache
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Outros
+*.bak
+*.swp

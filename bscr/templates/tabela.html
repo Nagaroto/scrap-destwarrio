@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Painel Futurista</title>
+
+<!-- Fonte futurista -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- CSS principal -->
+<link rel="stylesheet" href="{% static 'inicio/css/tabela.css' %}">
+</head>
+
+<body>
+
+<!-- CSRF isolado para uso do JavaScript (excluir / editar / etc) -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" id="csrfToken">
+
+
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+
+    <h1 class="logo">PAINEL DO USUÁRIO</h1>
+
+    <!-- Botão gráfico (classe preparada pra estilização forte no CSS) -->
+    <button type="button" class="btn-grafico" id="btnGrafico">
+        📈 GRÁFICO DE PREÇO
+    </button>
+
+</header>
+<!-- ========================================== -->
+
+
+
+<!-- ================= CONTAINER PRINCIPAL ================= -->
+<main class="page-content">
+
+<section class="products-container">
+
+{% for item in itens %}
+<div class="product-card" data-id="{{ item.id }}">
+
+    <!-- ID -->
+    <span class="product-id">ID {{ item.id }}</span>
+
+    <!-- INFO -->
+    <div class="product-info">
+        <h3>{{ item.nome }}</h3>
+        <p class="price">{{ item.preco }}</p>
+        <a href="{{ item.link }}" target="_blank">Abrir no Mercado Livre</a>
+    </div>
+
+    <!-- CONTROLES -->
+    <div class="product-controls">
+
+        <!-- diminuir quantidade -->
+        <button type="button" class="minus" data-id="{{ item.id }}">
+            −
+        </button>
+
+        <!-- quantidade -->
+        <span class="quantity" id="qtd-{{ item.id }}">
+            {{ item.quantidade|default:1 }}
+        </span>
+
+        <!-- aumentar -->
+        <button type="button" class="plus" data-id="{{ item.id }}">
+            +
+        </button>
+
+        <!-- excluir -->
+       <button type="button" class="delete-btn" data-id="{{ item.id }}"> 🗑️ </button>
+    </div>
+
+</div>
+{% empty %}
+<p class="empty">Nenhum produto salvo ainda.</p>
+{% endfor %}
+
+</section>
+<!-- ================= MODAL CYBER EXCLUIR ================= -->
+<div id="modalExcluir" class="cyber-modal">
+    <div class="cyber-box">
+
+        <div class="cyber-glow"></div>
+
+        <h2 class="cyber-title">CONFIRMAR EXCLUSÃO</h2>
+
+        <p id="textoExcluir" class="cyber-text"></p>
+
+        <div class="cyber-actions">
+            <button id="cancelarExcluir" class="cyber-btn cancel">
+                CANCELAR
+            </button>
+
+            <button id="confirmarExcluir" class="cyber-btn confirm">
+                EXCLUIR
+            </button>
+        </div>
+
+    </div>
+</div>
+<!-- ======================================================= -->
+
+</main>
+<!-- ======================================================= -->
+
+
+<!-- JS principal -->
+<script src="{% static 'inicio/js/tabela.js' %}"></script>
+
+</body>
+</html>

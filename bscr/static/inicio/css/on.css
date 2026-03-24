@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@500&display=swap');
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0b0f2b 35%,
+    #8b0000 60%,
+    #000000 100%
+  );
+  background-size: 400% 400%;
+  animation: bgMove 20s ease infinite;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* TOPO */
+.top-bar {
+  height: 70px;
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,0,0,0.25);
+}
+
+/* NOME */
+.brand-top {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px; /* ~10% menor */
+  letter-spacing: 4px;
+  color: transparent;
+  -webkit-text-stroke: 1.6px #ff0000;
+  animation: glow 4s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 6px #5c0000; }
+  to { text-shadow: 0 0 18px #ff0000; }
+}
+.hamburger {
+  position: fixed;
+  top: 22px;          /* AGORA EM CIMA */
+  right: 30px;        /* canto direito */
+  width: 30px;
+  cursor: pointer;
+  z-index: 30;        /* acima do hero */
+}
+
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  margin: 6px 0;
+  background: #ffffff;
+  border-radius: 3px;
+}
+
+/* MENU LATERAL */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #000000,
+    #0b0f2b,
+    #8b0000
+  );
+  padding: 90px 30px;
+  transition: 0.4s ease;
+  z-index: 15;
+}
+
+.side-menu.open {
+  right: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@500&display=swap');
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0b0f2b 35%,
+    #8b0000 60%,
+    #000000 100%
+  );
+  background-size: 400% 400%;
+  animation: bgMove 20s ease infinite;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* TOPO */
+.top-bar {
+  height: 70px;
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,0,0,0.25);
+}
+
+/* NOME */
+.brand-top {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px;
+  letter-spacing: 4px;
+  color: transparent;
+  -webkit-text-stroke: 1.6px #ff0000;
+  animation: glow 4s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 6px #5c0000; }
+  to { text-shadow: 0 0 18px #ff0000; }
+}
+
+/* BOTÃO HAMBURGUER */
+.hamburger {
+  position: fixed;
+  top: 22px;
+  right: 30px;
+  width: 30px;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  margin: 6px 0;
+  background: #ffffff;
+  border-radius: 3px;
+}
+
+/* MENU LATERAL */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #000000,
+    #0b0f2b,
+    #8b0000
+  );
+  padding: 90px 30px;
+  transition: 0.4s ease;
+  z-index: 15;
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+/* LINK MENU */
+.side-menu a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 14px 0;
+  transition: 0.3s;
+}
+
+.side-menu a:hover {
+  color: #ff0000;
+  transform: translateX(-6px);
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* CONTEÚDO */
+.content {
+  padding: 40px;
+  padding-bottom: 90px; /* espaço pro footer fixo */
+  color: white;
+}
+
+/* BLOCOS DE TEXTO */
+.intro,
+.focus,
+.menu-info {
+  max-width: 900px;
+  margin: 40px auto;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* CARD GITHUB */
+.git-card {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(0,0,0,0.65);
+  border: 1px solid rgba(255,0,0,0.25);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease;
+}
+
+.git-card:hover {
+  transform: scale(1.02);
+}
+
+.git-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.git-info h2 {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 6px;
+}
+
+.git-info a {
+  color: #ff0000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.git-info a:hover {
+  text-decoration: underline;
+}
+
+/* FAIXA FINAL FIXA */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px;
+  text-align: center;
+  background: #2e2e2e;
+  color: #ccc;
+  font-size: 14px;
+  z-index: 5;
+}
+# aq o rect ====================

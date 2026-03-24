@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Scrap Destwarrio</title>
+  <link rel="stylesheet" href="{% static 'inicio/css/scrap.css' %}?v=2">
+</head>
+
+<body>
+
+  <!-- TOPO -->
+  <header class="top-bar">
+    <div class="brand-top">SCRAP_DESTWARRIO</div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- MENU -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="{% url 'tabela' %}">Visualizar produtos</a>
+  </nav>
+
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <form method="get" class="search-box" id="searchForm">
+      {% csrf_token %}
+      <input
+        type="text"
+        name="q"
+        placeholder="Digite o produto..."
+        value="{{ termo|default:'' }}"
+      >
+      <button type="submit">Buscar</button>
+    </form>
+
+    <div class="loading" id="loading">
+      carregando<span>.</span><span>.</span><span>.</span>
+    </div>
+
+    {% if produtos %}
+      <section class="results">
+        {% for p in produtos %}
+          <div class="product-card">
+
+            <button
+              class="cart-btn"
+              title="Adicionar ao carrinho"
+              data-nome="{{ p.nome }}"
+              data-preco="{{ p.preco }}"
+              data-link="{{ p.link }}"
+            >
+              🛒
+            </button>
+
+            <h3>{{ p.nome }}</h3>
+            <p class="price">{{ p.preco }}</p>
+            <a href="{{ p.link }}" target="_blank">Ver no Mercado Livre</a>
+          </div>
+        {% endfor %}
+      </section>
+
+    {% elif termo %}
+      <p class="no-results">Nenhum resultado encontrado.</p>
+    {% endif %}
+
+  </main>
+
+  <footer class="footer-bar" id="footer">
+    © destwarrio — original
+  </footer>
+
+<script>
+
+  function toggleMenu() {
+    document.getElementById('sideMenu').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('show');
+  }
+
+  window.addEventListener('scroll', () => {
+    const footer = document.getElementById('footer');
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    if (scrollTop + windowHeight >= docHeight - 20) {
+      footer.classList.add('show');
+    } else {
+      footer.classList.remove('show');
+    }
+  });
+
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  const form = document.getElementById("searchForm");
+  const loading = document.getElementById("loading");
+
+  if (form) {
+    form.addEventListener("submit", () => {
+      const results = document.querySelector(".results");
+      if (results) results.innerHTML = "";
+      if (loading) loading.style.display = "block";
+    });
+  }
+
+  // converte "R$ 1.234,56" → "1234.56"
+  function limparPreco(preco) {
+    if (!preco) return "0";
+    return preco
+      .replace("R$", "")
+      .replace(/\./g, "")
+      .replace(",", ".")
+      .trim();
+  }
+
+  document.addEventListener("click", (e) => {
+
+    const btn = e.target.closest(".cart-btn");
+    if (!btn) return;
+
+    const produto = {
+      nome: btn.dataset.nome,
+      preco: limparPreco(btn.dataset.preco), // ⭐ corrigido aqui
+      link: btn.dataset.link
+    };
+
+    console.log("Produto enviado:", produto);
+
+    fetch("/inicio/carrinho/adicionar/", {
+      method: "POST",
+      credentials: 'same-origin',
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken")
+      },
+      body: JSON.stringify(produto)
+    })
+    .then(res => {
+      if (!res.ok) {
+        if (res.status === 401) {
+          alert('Você precisa estar logado');
+          window.location.href = '/inicio/login/';
+          throw new Error('Não autenticado');
+        }
+        return res.text().then(t => { throw new Error(t); });
+      }
+      return res.json();
+    })
+
+    .catch(err => {
+      console.error("Erro:", err);
+      alert("Erro ao adicionar produto");
+    });
+
+  });
+
+</script>
+
+</body>
+</html>

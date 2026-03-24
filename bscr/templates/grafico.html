@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Inteligente</title>
+
+    <!-- FONTE -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'inicio/css/grafico.css' %}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <h2>⚡ ANALYTICS</h2>
+
+        <input
+            type="text"
+            id="filtro"
+            placeholder="Buscar produto..."
+        >
+
+        <button id="btnReset">Resetar filtro</button>
+
+        <div class="stats">
+            <p id="totalProdutos">Produtos: 0</p>
+            <p id="mediaPreco">Média: R$ 0.00</p>
+            <p id="economia">Economia: R$ 0.00</p>
+        </div>
+
+    </aside>
+
+    <!-- ================= CONTEÚDO ================= -->
+    <main class="content">
+
+        <h1 class="titulo">ANÁLISE DE MERCADO</h1>
+
+        <!-- GRÁFICO 1 -->
+        <section class="grafico-box">
+            <h3>📊 Comparação de Preços</h3>
+            <div class="grafico-container">
+                <canvas id="graficoBarra"></canvas>
+            </div>
+        </section>
+
+        <!-- GRÁFICO 2 -->
+        <section class="grafico-box">
+            <h3>📈 Tendência de Valores</h3>
+            <div class="grafico-container">
+                <canvas id="graficoLinha"></canvas>
+            </div>
+        </section>
+
+        <!-- GRÁFICO 3 -->
+        <section class="grafico-box">
+            <h3>🥧 Distribuição de Preços</h3>
+            <div class="grafico-container">
+                <canvas id="graficoPizza"></canvas>
+            </div>
+        </section>
+
+        <!-- RANKING -->
+        <section class="grafico-box">
+            <h3>🏆 Ranking de Preços</h3>
+            <div class="ranking" id="ranking"></div>
+        </section>
+
+    </main>
+
+</div>
+
+<!-- CHART -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JS -->
+<script src="{% static 'inicio/js/grafico.js' %}"></script>
+
+</body>
+</html>
