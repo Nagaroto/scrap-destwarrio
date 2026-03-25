@@ -5,7 +5,6 @@ padding:0;
 box-sizing:border-box;
 }
 
-
 /* ================= BODY ================= */
 body{
 font-family:'Orbitron', sans-serif;
@@ -18,8 +17,6 @@ color:white;
 min-height:100vh;
 overflow-x:hidden;
 }
-
-
 
 /* ================= HEADER ================= */
 .top-bar{
@@ -40,8 +37,6 @@ color:#ff004c;
 letter-spacing:3px;
 text-shadow:0 0 12px #ff004c;
 }
-
-
 
 /* ================= BUSCA ================= */
 .search-form{
@@ -67,8 +62,6 @@ color:white;
 cursor:pointer;
 }
 
-
-
 /* ================= BOTÃO GRAFICO ================= */
 .btn-grafico{
 all:unset;
@@ -92,15 +85,11 @@ color:black;
 box-shadow:0 0 25px #00ffff;
 }
 
-
-
 /* ================= AREA PRINCIPAL ================= */
 /* empurra o conteúdo pra baixo do header */
 .page-content{
 padding-top:25px;
 }
-
-
 
 /* ================= CONTAINER PRODUTOS ================= */
 /* AGORA PARTICIPA DO FLUXO NORMAL */
@@ -113,8 +102,6 @@ display:flex;
 flex-direction:column;
 gap:20px;
 }
-
-
 
 /* ================= CARD ================= */
 .product-card{
@@ -135,8 +122,6 @@ transform:translateY(-4px);
 box-shadow:0 0 25px rgba(0,140,255,0.25);
 }
 
-
-
 /* ================= ID ================= */
 .product-id{
 position:absolute;
@@ -146,14 +131,10 @@ font-size:12px;
 color:#ff004c;
 }
 
-
-
 /* ================= INFO ================= */
 .price{
 color:#00c3ff;
 }
-
-
 
 /* ================= CONTROLES ================= */
 .product-controls{
@@ -178,20 +159,19 @@ transition:.2s;
 transform:scale(1.08);
 }
 
-
-
 /* ================= DELETE ================= */
 .delete-btn{
 background:linear-gradient(45deg,#ff0000,#ff5a5a);
 font-size:20px;
 box-shadow:0 0 10px red;
+border-radius:50%;
+width:40px;
+height:40px;
 }
 
 .delete-btn:hover{
 box-shadow:0 0 18px red;
 }
-
-
 
 /* ================= QUANTIDADE ================= */
 .quantity{
@@ -199,7 +179,6 @@ min-width:30px;
 text-align:center;
 font-size:20px;
 }
-
 
 /* ===== MODAL FUNDO ===== */
 .cyber-modal{
@@ -306,7 +285,6 @@ font-size:20px;
     }
 }
 
-
 /* ================= INPUT QUANTIDADE MODAL ================= */
 #inputQtdExcluir{
     margin-top:12px;
@@ -337,3 +315,39 @@ font-size:20px;
     -moz-appearance:textfield;
 }
 
+
+/* ===== BOTÃO VOLTAR ===== */
+.btn-voltar {
+  all: unset;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+  box-shadow: 0 0 12px #00ffff, inset 0 0 12px rgba(0,255,255,0.3);
+  transition: 0.25s;
+  margin-right: 20px;
+}
+
+.btn-voltar:hover {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 25px #00ffff;
+}
+
+/* ===== TRANSIÇÕES SUAVES ===== */
+.product-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.quantity {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.product-controls button {
+  transition: opacity 0.2s ease;
+}
